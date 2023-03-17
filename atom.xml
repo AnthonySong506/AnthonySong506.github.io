@@ -6,7 +6,7 @@
   <link href="http://anthonysong506.github.io/atom.xml" rel="self"/>
   
   <link href="http://anthonysong506.github.io/"/>
-  <updated>2023-03-16T13:59:37.923Z</updated>
+  <updated>2023-03-17T00:16:10.569Z</updated>
   <id>http://anthonysong506.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高级程序设计枚举章</title>
+    <link href="http://anthonysong506.github.io/posts/b3b62ea9.html"/>
+    <id>http://anthonysong506.github.io/posts/b3b62ea9.html</id>
+    <published>2023-03-17T00:04:50.000Z</published>
+    <updated>2023-03-17T00:16:10.569Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="高级程序设计枚举章"><a href="#高级程序设计枚举章" class="headerlink" title="高级程序设计枚举章"></a>高级程序设计枚举章</h2><h3 id="二进制枚举"><a href="#二进制枚举" class="headerlink" title="二进制枚举"></a>二进制枚举</h3><p>题目：<br>    诗仙李白的郁闷事<br>大诗人李白，一生好饮。一天，他提着酒壶，从家里出来，酒壶中有酒两斗。他边走边唱：<br>     无事街上走，提壶去打酒<br>     逢店加一倍，遇花喝一斗。<br>  这一路上，他一共遇到店5次，遇到花10次，已知最后一次遇到的是花，此时他正好把酒喝光了。请你计算李白遇到店和花的次序，并统计有多少种可能的方案。<br>题解：<br>已知遇到店5次，遇到花10次，并且最后一次遇到花正好把酒喝光。<br>诗仙李白遇到的店和花两种状态可以用0&#x2F;1表示，假设用1表示店，0表示花。<br>5个店和10个花，最后一次遇到花即0，此时酒刚好剩一斗。<br>因此，李白前面共遇到5个店和9个花，即寻找5个1和9个0组成的14位二进制数，使得2斗最终变为1斗的方案。<br>因此我们枚举出14位二进制数表示范围中的每个数i，然后提取其各位上的值，1就把酒量加倍且统计店数加1，0就让酒量减1，当最终算出酒量为1，且店数为5时（此时0的个数就是9个），即为方案之一。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> <span class="type">const</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> shop=<span class="number">0</span>,wine=<span class="number">2</span>,x,n=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; <span class="number">1</span>&lt;&lt;<span class="number">14</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        x=wine;</span><br><span class="line">        shop=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">14</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i&amp;<span class="number">1</span>&lt;&lt;j)</span><br><span class="line">            &#123;</span><br><span class="line">                x=x*<span class="number">2</span>;</span><br><span class="line">                shop++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                x--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="number">1</span>&amp;&amp;shop==<span class="number">5</span>) n++;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;n;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><hr>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;高级程序设计枚举章&quot;&gt;&lt;a href=&quot;#高级程序设计枚举章&quot; class=&quot;headerlink&quot; title=&quot;高级程序设计枚举章&quot;&gt;&lt;/a&gt;高级程序设计枚举章&lt;/h2&gt;&lt;h3 id=&quot;二进制枚举&quot;&gt;&lt;a href=&quot;#二进制枚举&quot; class=&quot;header</summary>
+      
+    
+    
+    
+    
+    <category term="枚举 二进制枚举" scheme="http://anthonysong506.github.io/tags/%E6%9E%9A%E4%B8%BE-%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9E%9A%E4%B8%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>Acwing算法基础动态规划DP(一)</title>
